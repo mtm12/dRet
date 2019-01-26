@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>AutoML Vison Model Diabetic Retinopathy</title>
+	<link href="../css/css.css" rel="stylesheet" type="text/css">
+	<script language="javascript" type="text/javascript" src="../../cgi-bin/js/index_dRet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+</head>
+
+<body onLoad="page_load()">
+<table width="1200" border="0" align="center" style="border-spacing: 0px">
+  <tbody>
+	<tr>
+      <td width="200">&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="header" colspan="4">Demonstration Of Google AutoML Vision Machine Learning Model <br>Using Messidor Diabetic Retinopathy Dataset </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+
+      <td style="background-color:#FFFF00" colspan="4">
+		  <table width="100%" border="0">
+  <tbody>
+    <tr>
+      <td>Notice:</td>
+      <td>All content found on this website, including: text, images, audio, or other formats were created for informational, demonstrational and educational purposes only. The Content is not intended to be a substitute for professional medical advice, diagnosis, or treatment.</td>
+    </tr>
+  </tbody>
+</table>
+</td>
+
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td class="title">Drag and drop image then click the "Predict" button</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="sample_box" align="center">
+		  <div style="height:400px;width:300px;border:solid 1px black;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+		  <br>
+		  <img id="20051019_38557_0100_PP.png" src="http://mentorml.com/dRet/images/20051019_38557_0100_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20051019_38557_0100_PP.png - diabetic retinopathy<br><br>
+		  <img id="20051021_39222_0100_PP.png" src="http://mentorml.com/dRet/images/20051021_39222_0100_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20051021_39222_0100_PP.png - diabetic retinopathy<br><br>
+		  <img id="20051109_59969_0400_PP.png" src="http://mentorml.com/dRet/images/20051109_59969_0400_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20051109_59969_0100_PP.png - no diabetic retinopathy<br><br>
+		  <img id="20051130_59930_0400_PP.png" src="http://mentorml.com/dRet/images/20051130_59930_0400_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20051130_59930_0400_PP.png - no diabetic retinopathy<br><br>
+		  <img id="20051201_38155_0400_PP.png" src="http://mentorml.com/dRet/images/20051201_38155_0400_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20051201_38155_0400_PP.png - no diabetic retinopathy<br><br>
+		  <img id="20060529_56834_0100_PP.png" src="http://mentorml.com/dRet/images/20060529_56834_0100_PP.png" draggable="true" ondragstart="drag(event)" width="130" height="87">
+		  <br>20060529_56834_0100_PP.png - diabetic retinopathy<br><br>
+		  </div>
+		</td>
+	  <td>&nbsp;</td>
+      <td>
+	<table width="100%" border="0">
+			  <tbody>
+				<tr>
+				  <td>&nbsp;</td>
+				  <td>&nbsp;</td>
+				  <td>&nbsp;</td>
+				  <td>
+				  <canvas id="canvas" width="400" height="265" style="border:2px solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>	
+					</td>
+				  <td>&nbsp;</td>
+				  <td>&nbsp;</td>
+				  <td class="center"><input type="button" id="predict_button" class="predict_btn" value="Predict" onClick="predict()"></td>
+				  <td class="center"><span class="measurement_inputs" id="no_dRet">00.0%</span><br><span class="measurement_inputs">Probability of <br> No Diabetic Retinopathy</span></td>
+				  <td class="center"><span class="measurement_inputs" id="dRet">00.0%</span><br><span class="measurement_inputs">Probability of <br>Diabetic Retinopathy</span></td>
+				</tr>
+			  </tbody>
+			</table>
+		</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+
+		</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td class="ref_header">References:</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>Source code:<a href="https://github.com/mtm12/dRet">https://github.com/mtm12/dRet</a></td>
+      <td>&nbsp;</td>
+    </tr>
+<!--
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>Model development video: </td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>Model deployment video:</td>
+      <td>&nbsp;</td>
+    </tr>
+-->
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>Dataset: <a href="http://www.adcis.net/en/Download-Third-Party/Messidor.html">http://www.adcis.net/en/Download-Third-Party/Messidor.html</a></td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+<!--
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td class="title">How it works</td>
+      <td>&nbsp;</td>
+    </tr>
+-->
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td align="center"></td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+      <td class="center">&copy;2019 Marc McLean</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
